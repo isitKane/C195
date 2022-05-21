@@ -158,6 +158,7 @@ public class AddAppointmentFormController implements Initializable {
     void onActionSave(ActionEvent event) throws SQLException, IOException, NullPointerException {
         //timeChecker();
         //emptyFieldCheck();
+        comboBoxAlert();
         try {
             int appointmentID = idNum++;
             int userID = UserIDComboBox.getValue();
@@ -207,10 +208,9 @@ public class AddAppointmentFormController implements Initializable {
                 }
             }
 
-            if (AppointmentDTextField.getText().isEmpty() || UserIDComboBox.getSelectionModel().isEmpty() || CustomerComboBox.getSelectionModel().isEmpty()
-                    || TitleTextField.getText().isEmpty() || DescriptionTextField.getText().isEmpty() || LocationTextField.getText().isEmpty()
-                    || ContactComboBox.getSelectionModel().isEmpty() || TypeTextField.getText().isEmpty() || StartDatePicker.getValue() == null
-                    || StartTimeComboBox.getSelectionModel().isEmpty() || EndDatePicker.getValue() == null || EndTimeComboBox.getSelectionModel().isEmpty()) {
+            if (AppointmentDTextField.getText().isEmpty() || TitleTextField.getText().isEmpty()
+                    || DescriptionTextField.getText().isEmpty() || LocationTextField.getText().isEmpty()
+                    || TypeTextField.getText().isEmpty()) {
                 appointmentAlertsEN(4);
             } else {
 
@@ -225,6 +225,19 @@ public class AddAppointmentFormController implements Initializable {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    /**
+     * alerts if any of the combo boxes are empty
+     */
+    public void comboBoxAlert() {
+
+        if (UserIDComboBox.getSelectionModel().isEmpty() || CustomerComboBox.getSelectionModel().isEmpty()
+                || ContactComboBox.getSelectionModel().isEmpty() || StartDatePicker.getValue() == null
+                || StartTimeComboBox.getSelectionModel().isEmpty() || EndDatePicker.getValue() == null
+                || EndTimeComboBox.getSelectionModel().isEmpty()) {
+            appointmentAlertsEN(4);
         }
     }
 
